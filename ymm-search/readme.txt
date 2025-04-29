@@ -2,8 +2,8 @@
 
 Contributors: pektsekye
 Tags: tyre search, part finder, ymm, year make model search
-Tested up to: 6.5.5
-Stable tag: 1.0.10
+Tested up to: 6.8
+Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 

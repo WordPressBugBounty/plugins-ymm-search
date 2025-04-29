@@ -2,18 +2,18 @@
 /**
  * Plugin Name: YMM Search
  * Description: Customer can search for replacment parts by vehicle make, model and year.
- * Version: 1.0.10
+ * Version: 1.0.11
  * Author: Pektsekye
  * Author URI: http://hottons.com
  * License: GPLv2     
  * Requires at least: 4.7
- * Tested up to: 6.5.5
+ * Tested up to: 6.8
  *
  * Text Domain: ymm-search
  * Domain Path: /i18n/languages
  *
  * WC requires at least: 3.0
- * WC tested up to: 8.8.5
+ * WC tested up to: 9.6.1
  * 
  * @package Ymm
  * @author Pektsekye

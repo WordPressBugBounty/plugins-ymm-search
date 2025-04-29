@@ -29,7 +29,7 @@ class Pektsekye_Ymm_Controller_Adminhtml_Ymm_Selector {
  
   public function execute(){
       
-    if (isset($_GET['action'])){
+    if (isset($_GET['action']) && current_user_can('manage_options')){
       switch($_GET['action']){               
         case 'importData':       
           if (isset($_FILES['import_file'])){
