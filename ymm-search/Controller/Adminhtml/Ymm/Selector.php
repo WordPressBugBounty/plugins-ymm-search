@@ -29,7 +29,7 @@ class Pektsekye_Ymm_Controller_Adminhtml_Ymm_Selector {
  
   public function execute(){
       
-    if (isset($_GET['action']) && current_user_can('manage_options')){
+    if (isset($_GET['action']) && current_user_can('manage_options') && isset($_POST['ymm_nonce']) && wp_verify_nonce($_POST['ymm_nonce'], 'ymm_update_configuration')){
       switch($_GET['action']){               
         case 'importData':       
           if (isset($_FILES['import_file'])){

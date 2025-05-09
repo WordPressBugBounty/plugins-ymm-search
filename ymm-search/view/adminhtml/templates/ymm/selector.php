@@ -21,7 +21,8 @@ $message = $this->getMessage();
 <div class="ymm-section">
   <div><h4><?php echo __('Import YMM Data', 'ymm-search'); ?>:</h4></div>    
   <form action="?page=ymm&action=importData" method="post" enctype="multipart/form-data">
-      <fieldset class="ymm-fieldset">              
+      <fieldset class="ymm-fieldset">  
+          <?php wp_nonce_field('ymm_update_configuration', 'ymm_nonce'); ?>                  
           <input type="file" name="import_file" class="input-file required-entry"/>
           <input type="checkbox" name="delete_old" id="ymm_delete_old" value="1"/>
           <label for="ymm_delete_old"><?php echo __('delete existing values', 'ymm-search'); ?></label>
@@ -32,6 +33,7 @@ $message = $this->getMessage();
   <div><h4><?php echo __('Export YMM Data', 'ymm-search'); ?>:</h4></div>     
   <form id="export_form" action="?page=ymm&action=exportData" method="post" enctype="multipart/form-data">
       <fieldset class="ymm-fieldset">
+          <?php wp_nonce_field('ymm_update_configuration', 'ymm_nonce'); ?>      
           <input name="submit" id="submit" class="button button-primary" value="<?php echo $this->hasYmmData() ? __('Export CSV', 'ymm-search') :  __('Export sample CSV', 'ymm-search') ; ?>" type="submit">                                
       </fieldset>
   </form>
@@ -39,6 +41,7 @@ $message = $this->getMessage();
   <div><h4><?php echo __('Configuration', 'ymm-search'); ?>:</h4></div>
   <form id="export_form" action="?page=ymm&action=updateConfig" method="post" enctype="multipart/form-data">
       <fieldset class="ymm-fieldset">
+          <?php wp_nonce_field('ymm_update_configuration', 'ymm_nonce'); ?>      
           <input type="checkbox" name="ymm_display_vehicle_fitment" id="ymm_fitment" value="1" <?php echo $this->getDisplayVehicleFitment() ? 'checked="checked"' : ''; ?>>
           <label for="ymm_fitment"><?php echo __('Display vehicle fitment on front-end product view page', 'ymm-search'); ?></label>
           <br/><br/>     

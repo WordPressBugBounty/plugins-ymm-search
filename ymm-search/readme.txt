@@ -77,6 +77,22 @@ Contact me by email <pektsekye@gmail.com> if you have questions or need help.
 
 == Changelog ==
 
+= 1.0.12 - Released: May, 10 - 2025  =
+
+* Minor correction. patchstack sugested to add nonce verification to the settings page. Otherwise someone with admin login can change settings of this plugin from another page.
+Just two files changed:
+wp-content/plugins/ymm-search/Controller/Adminhtml/Ymm/Selector.php
+line 32
+wp-content/plugins/ymm-search/view/adminhtml/templates/ymm/selector.php
+lines 25, 36, 44
+
+= 1.0.11 - Released: Apr, 29 - 2025  =
+
+* Minor correction. patchstack reported that possible to change the plugin settings without an administrator login.
+Just one line changed:
+wp-content/plugins/ymm-search/Controller/Adminhtml/Ymm/Selector.php
+line 32
+
 = 1.0.10 - Released: Feb, 24 - 2019  =
 
 * To make it compatible with WordPress 5.1
