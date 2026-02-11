@@ -13,7 +13,7 @@
  * Domain Path: /i18n/languages
  *
  * WC requires at least: 3.0
- * WC tested up to: 9.6.1
+ * WC tested up to: 10.2.2
  * 
  * @package Ymm
  * @author Pektsekye
@@ -33,7 +33,9 @@ final class Pektsekye_Ymm {
   protected $_registry;
   
   public $_message = array();    
-
+  
+  protected $_lastShortcodeInd = 0;
+  
 
   public static function instance() {
     if ( is_null( self::$_instance ) ) {
@@ -191,8 +193,11 @@ final class Pektsekye_Ymm {
     include_once($this->getPluginPath() . 'Block/Selector.php');
           
     $block = new Pektsekye_Ymm_Block_Selector();
-    $block->setWidgetId('content');
-   
+        
+    $this->_lastShortcodeInd++;
+    
+    $block->setWidgetId('content_' . $this->_lastShortcodeInd);    
+    
     if (isset($atts['template'])){
       $template = str_replace('/', '', trim($atts['template'])); // do not allow to change directory
       $block->setTemplate($template);
@@ -200,6 +205,12 @@ final class Pektsekye_Ymm {
     
     $garageEnabled = isset($atts['garage']) && $atts['garage'] == 1 ? 1 : 0;
     $block->setGarageEnabled($garageEnabled);
+    
+    $removeFromGarage = isset($atts['remove_from_garage_enabled']) && $atts['remove_from_garage_enabled'] == 1 ? 1 : 0;
+    $block->setRemoveFromGarageEnabled($removeFromGarage);
+        
+    $filterCategoryPage = isset($atts['filter_category_page']) && $atts['filter_category_page'] == 0 ? 0 : 1;
+    $block->setFilterCategoryPage($filterCategoryPage);
            
     ob_start();
 
@@ -271,5 +282,17 @@ register_activation_hook(__FILE__, array('Pektsekye_Ymm_Setup_Install', 'install
 // If WooCommerce plugin is installed and active.
 if (in_array('woocommerce/woocommerce.php', (array) get_option('active_plugins', array())) || in_array('woocommerce/woocommerce.php', array_keys((array) get_site_option('active_sitewide_plugins', array())))){
   Pektsekye_YMM();
+}
+
+// define compatibility with WooCommerce HPOS (High-Performance Order Storage)
+add_action( 'before_woocommerce_init', function() {
+	if ( class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
+		\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
+	}
+} );
+
+// disable adding <p> tags into the HTML code rendered from shortcode
+if (function_exists('wp_is_block_theme') && wp_is_block_theme()){  
+  remove_action('init', 'register_block_core_shortcode');
 }
 
