@@ -7,13 +7,13 @@
  * Author URI: http://hottons.com
  * License: GPLv2     
  * Requires at least: 4.7
- * Tested up to: 6.8
+ * Tested up to: 6.9.1
  *
  * Text Domain: ymm-search
  * Domain Path: /i18n/languages
  *
  * WC requires at least: 3.0
- * WC tested up to: 10.2.2
+ * WC tested up to: 10.5.2
  * 
  * @package Ymm
  * @author Pektsekye
